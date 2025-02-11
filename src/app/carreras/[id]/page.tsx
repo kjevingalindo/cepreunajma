@@ -1,25 +1,30 @@
-// src/app/carreras/[id]/page.tsx
-import React from 'react';
-import { Carrera } from '@/models/carrera';
+import React from "react";
+import { notFound } from "next/navigation"; // Manejo de errores 404
 
-// Datos de ejemplo (reemplaza con una llamada a la API o base de datos)
-const carreras: Carrera[] = [
+// Datos de ejemplo (reemplaza con API o base de datos)
+const carreras = [
   {
     id: 1,
     nombre: "Ingeniería Agroindustrial",
     descripcion: "Transforma productos agrícolas en bienes de alto valor.",
     reseña: "La Ingeniería Agroindustrial surgió en el siglo XX...",
-    imagen: "agroindustrial.jpg",
+    imagen: "/images/carreras/agroindustrial.jpg", // Ajuste en la ruta de la imagen
     enlace: "/carreras/1",
   },
   // Agrega más carreras aquí...
 ];
 
 export default function CarreraDetallePage({ params }: { params: { id: string } }) {
-  const carrera = carreras.find((c) => c.id === Number(params.id));
+  const carreraId = parseInt(params.id, 10); // Convertir params.id en número
+
+  if (isNaN(carreraId)) {
+    return notFound(); // Si el ID no es válido, mostrar página 404
+  }
+
+  const carrera = carreras.find((c) => c.id === carreraId);
 
   if (!carrera) {
-    return <div>Carrera no encontrada</div>;
+    return notFound(); // Si la carrera no existe, mostrar página 404
   }
 
   return (

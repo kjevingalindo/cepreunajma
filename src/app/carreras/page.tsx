@@ -1,40 +1,64 @@
-// src/app/carreras/page.tsx
-import React from 'react';
-import CarreraCard from './CarreraCard';
-import { Carrera } from '@/models/carrera';
+"use client";
+import { motion } from "framer-motion";
+import CarreraCard from "./components/CarreraCard";
 
-// Datos de ejemplo para las carreras
-const carreras: Carrera[] = [
+const carreras = [
   {
-    id: 1,
-    nombre: "Ingeniería Agroindustrial",
-    descripcion: "Transforma productos agrícolas en bienes de alto valor.",
-    reseña: "La Ingeniería Agroindustrial surgió en el siglo XX...",
-    imagen: "agroindustrial.jpg",
-    enlace: "/carreras/1",
-  },
-  {
-    id: 2,
     nombre: "Ingeniería Ambiental",
-    descripcion: "Contribuye al cuidado del medio ambiente y la sostenibilidad.",
-    reseña: "La Ingeniería Ambiental se desarrolló en la década de 1970...",
-    imagen: "/images/ambiental.jpg",
-    enlace: "/carreras/2",
+    descripcion: "Formación profesional en gestión sostenible de recursos naturales...",
+    duracion: "10 meses",
+    imagen: "agroindustrial.jpg",
+    enlace: "/carreras/agroindustrial"
   },
-  // Agrega más carreras aquí...
+  // ... otras carreras
 ];
 
 export default function CarrerasPage() {
   return (
-    <div className="bg-gray-100 min-h-screen p-6">
-      <h1 className="text-3xl font-bold text-center text-gray-800 mb-8">
-        Explora Nuestras Carreras
-      </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {carreras.map((carrera) => (
-          <CarreraCard key={carrera.id} carrera={carrera} />
-        ))}
-      </div>
+    <div className="min-h-screen bg-gray-50">
+      {/* Sección Hero Carreras */}
+      <motion.div 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="bg-gradient-to-r from-orange-600 to-orange-500 text-white py-24 shadow-md"
+      >
+        <div className="container mx-auto px-6 text-center">
+          <motion.h1
+            initial={{ y: 30 }}
+            animate={{ y: 0 }}
+            className="text-5xl font-extrabold mb-6 tracking-wide drop-shadow-lg"
+          >
+            Nuestras Carreras
+          </motion.h1>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-xl max-w-2xl mx-auto font-light"
+          >
+            Descubre programas académicos diseñados para tu éxito profesional
+          </motion.p>
+        </div>
+      </motion.div>
+
+      {/* Grid de Carreras */}
+      <section className="container mx-auto px-6 py-20">
+        <motion.div 
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
+        >
+          {carreras.map((carrera, index) => (
+            <motion.div 
+              key={index}
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+              className="rounded-xl overflow-hidden shadow-xl bg-white hover:shadow-2xl transition duration-300 border border-orange-300"
+            >
+              <CarreraCard carrera={carrera} />
+            </motion.div>
+          ))}
+        </motion.div>
+      </section>
     </div>
   );
 }
