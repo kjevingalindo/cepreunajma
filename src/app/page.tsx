@@ -25,7 +25,7 @@ export default function Home() {
             </p>
             <Link
               href="/carreras"
-              className="bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-600 transition duration-300"
+              className="bg-orange-500 text-white px-6 py-3 rounded-lg hover:bg-orange-700 transition duration-300 shadow-lg"
             >
               Explora Nuestras Carreras
             </Link>
