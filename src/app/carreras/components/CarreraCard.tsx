@@ -2,16 +2,11 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 import Image from 'next/image';
+import { Carrera } from '@/types/carrera';
 import { FaGraduationCap, FaClock, FaArrowRight } from 'react-icons/fa';
 
 interface CarreraCardProps {
-  carrera: {
-    nombre: string;
-    descripcion: string;
-    duracion: string;
-    imagen: string;
-    enlace: string;
-  };
+  carrera:Carrera; 
 }
 
 // Versión corregida con exportación default correcta

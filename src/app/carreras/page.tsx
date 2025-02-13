@@ -1,14 +1,16 @@
 "use client";
 import { motion } from "framer-motion";
 import CarreraCard from "./components/CarreraCard";
+import { Carrera } from '@/types/carrera';
 
-const carreras = [
+const carreras: Carrera[] = [
   {
+    id: 1,
     nombre: "Ingeniería Ambiental",
     descripcion: "Formación profesional en gestión sostenible de recursos naturales...",
     duracion: "10 meses",
     imagen: "agroindustrial.jpg",
-    enlace: "/carreras/agroindustrial"
+    enlace: "/carreras/1"
   },
   // ... otras carreras
 ];

@@ -1,10 +1,28 @@
 // components/Navbar.tsx
-import Link from 'next/link';
-import Image from 'next/image';
+"use client";
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import Image from "next/image";
 
 const Navbar = () => {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 50);
+    
+    window.addEventListener("scroll", handleScroll);
+    
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   return (
-    <nav className="bg-orange-700 shadow-lg fixed w-full top-0 z-50" role="navigation" aria-label="Main navigation">
+    <nav
+      className={`fixed w-full top-0 z-50 shadow-lg transition-all ${
+        scrolled ? "bg-orange-900 shadow-md" : "bg-orange-700"
+      }`}
+      role="navigation"
+      aria-label="Main navigation"
+    >
       <div className="container mx-auto px-4 py-4 flex justify-between items-center">
         <div className="flex items-center">
           <Image
@@ -39,3 +57,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+
